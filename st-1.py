@@ -1,3 +1,10 @@
+packagename\
+    __init__.py
+    basic.py
+    extended.py
+
+import packagename.extended
+
 import streamlit as st
 import pandas as pd
 import numpy as np
