@@ -1,7 +1,3 @@
-packagename\
-    __init__.py
-    basic.py
-    extended.py
 
 import packagename.extended
 
