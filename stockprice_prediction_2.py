@@ -6,7 +6,7 @@
       "name": "stockprice_prediction_2.py",
       "provenance": [],
       "collapsed_sections": [],
-      "authorship_tag": "ABX9TyM4TTxTdpmLPh2Il/4XVI9c"
+      "authorship_tag": "ABX9TyNyqeWRwthb48zCHrEkO0Mo"
     },
     "kernelspec": {
       "name": "python3",
@@ -43,7 +43,6 @@
       },
       "source": [
         "st.title('Stock Forecast App')\n",
-        "\n",
         "dataset = ('AAPL','MSCT')"
       ],
       "execution_count": null,
@@ -56,7 +55,6 @@
       },
       "source": [
         "option = st.selectbox('Select dataset for prediction',dataset)\n",
-        "\n",
         "year = st.slider('Year of prediction:',1,4)\n",
         "period = year * 365"
       ],
@@ -70,7 +68,7 @@
       },
       "source": [
         "@st.cache\n",
-        "def load_data(option):\n",
+        "def load_data():\n",
         "    data = yf.download(option, start=\"2010-01-01\")\n",
         "    data = data.reset_index()\n",
         "    return data"
