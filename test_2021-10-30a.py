@@ -1,6 +1,7 @@
-import streamlit as st
-import yfinance as yf 
 import pandas as pd 
+import streamlit as st
+import yfinance as yf
+from fbprophet import Prophet
 
 st.write("""
 ## Stock Price Prediction
@@ -28,3 +29,11 @@ st.line_chart(data.Volume)
 data = data.reset_index()
 data_pred = data[['Date','Close']]
 data_pred=data_pred.rename(columns={"Date": "ds", "Close": "y"})
+
+# code for facebook prophet prediction
+m = Prophet()
+m.fit(data_pred)
+future = m.make_future_dataframe(periods=period)
+forecast = m.predict(future)
+
+st.line_chart(forecast.Close)
