@@ -3,8 +3,8 @@ import yfinance as yf
 import pandas as pd 
 
 st.write("""
-## Simple stock price App
-by akash a desai \n
+## Stock Price Prediction
+by Group1 \n
 shows ***stock*** closing and volue of **price**
 """)
 
