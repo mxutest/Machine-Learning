@@ -1,7 +1,13 @@
 import pandas as pd 
 import streamlit as st
 import yfinance as yf
-from fbprophet import Prophet
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.preprocessing import MinMaxScaler
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout, LSTM
+from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
+#from fbprophet import Prophet
 
 st.write("""
 ## Stock Price Prediction
@@ -26,15 +32,15 @@ st.line_chart(data.Close)
 st.line_chart(data.Volume)
 
 # preparing the data for Facebook-Prophet.
-data = data.reset_index()
-data_pred = data[['Date','Close']]
-data_pred=data_pred.rename(columns={"Date": "ds", "Close": "y"})
+#data = data.reset_index()
+#data_pred = data[['Date','Close']]
+#data_pred=data_pred.rename(columns={"Date": "ds", "Close": "y"})
 
 # code for facebook prophet prediction
-m = Prophet()
-m.fit(data_pred)
-future = m.make_future_dataframe(periods=period)
-forecast = m.predict(future)
+#m = Prophet()
+#m.fit(data_pred)
+#future = m.make_future_dataframe(periods=period)
+#forecast = m.predict(future)
 
-st.line_chart(forecast.y)
-st.write(forecast)
+#st.line_chart(forecast.y)
+#st.write(forecast)
