@@ -25,12 +25,10 @@ st.title('Stock Price Prediction - Group1')
 stocks = ('GOOG', 'AAPL', 'MSFT', 'GME','Others')
 selected_stock = st.selectbox('Select dataset for prediction', stocks)
 
-others = st.text_input('Please input stock code','')
+other = st.text_input('Please input stock code','')
 
 if selected_stock == 'Others':
-	selected_stock = others
-else:
-	return
+	selected_stock = other
 
 n_years = st.slider('Years of prediction:', 1, 4)
 period = n_years * 365
