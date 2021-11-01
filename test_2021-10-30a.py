@@ -21,8 +21,8 @@ tickerData=yf.Ticker(tickerSymbol)
 data=tickerData.history(period='1d',start="2010-01-01")
 data_load_state.text('Loading data... done!')
 
-st.line_chart(tickerDf.Close)
-st.line_chart(tickerDf.Volume)
+st.line_chart(data.Close)
+st.line_chart(data.Volume)
 
 # preparing the data for Facebook-Prophet.
 data = data.reset_index()
