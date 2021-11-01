@@ -36,4 +36,5 @@ m.fit(data_pred)
 future = m.make_future_dataframe(periods=period)
 forecast = m.predict(future)
 
-st.line_chart(forecast.Close)
+st.line_chart(forecast.y)
+st.write(forecast)
