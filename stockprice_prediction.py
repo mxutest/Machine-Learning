@@ -67,10 +67,10 @@ forecast = m.predict(future)
 st.subheader('Forecast data of '+selected_stock)
 st.write(forecast.tail())
     
-st.write('Forecasting closing of stock value for '+selected_stock+' for a period of: '+str(n_years)+'year')
+st.write('Forecasting closing of stock value for '+selected_stock+' for a period of: '+str(n_years)+' year')
 fig1 = plot_plotly(m, forecast)
 st.plotly_chart(fig1)
 
-st.write('Forecast components of stock value for '+selected_stock+' for a period of: '+str(n_years)+'year')
+st.write('Forecast components of stock value for '+selected_stock+' for a period of: '+str(n_years)+' year')
 fig2 = m.plot_components(forecast)
 st.write(fig2)
