@@ -23,12 +23,10 @@ TODAY = date.today().strftime("%Y-%m-%d")
 st.title('Stock Price Prediction - Group1')
 
 stocks = ('GOOG', 'AAPL', 'MSFT', 'GME','Others')
-selected_stock = st.selectbox('Select dataset for prediction', stocks)
-
-other = st.text_input('Please input stock code','')
+selected_stock = st.selectbox('Select dataset for prediction or input stock code below', stocks)
 
 if selected_stock == 'Others':
-	selected_stock = other
+	selected_stock = st.text_input('Please input stock code','')
 
 n_years = st.slider('Years of prediction:', 1, 4)
 period = n_years * 365
@@ -49,8 +47,8 @@ st.write(data.tail())
 # Plot raw data
 def plot_raw_data():
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=data['Date'], y=data['Open'], name="stock_open"))
-    fig.add_trace(go.Scatter(x=data['Date'], y=data['Close'], name="stock_close"))
+    fig.add_trace(go.Scatter(x=data['Date'], y=data['Open'], name="stock_open "+selected_stock))
+    fig.add_trace(go.Scatter(x=data['Date'], y=data['Close'], name="stock_close "+selected_stock))
     fig.layout.update(title_text='Time Series data with Rangeslider', xaxis_rangeslider_visible=True)
     st.plotly_chart(fig)
     
@@ -66,13 +64,13 @@ future = m.make_future_dataframe(periods=period)
 forecast = m.predict(future)
 
 # Show and plot forecast
-st.subheader('Forecast data')
+st.subheader('Forecast data of '+selected_stock)
 st.write(forecast.tail())
     
-st.write(f'Forecast plot for {n_years} years')
+st.write('Forecasting closing of stock value for'+selected_stock+' for a period of: '+str(n_years)+'year')
 fig1 = plot_plotly(m, forecast)
 st.plotly_chart(fig1)
 
-st.write("Forecast components")
+st.write('Forecast components of stock value for'+selected_stock+' for a period of: '+str(n_years)+'year')
 fig2 = m.plot_components(forecast)
 st.write(fig2)
