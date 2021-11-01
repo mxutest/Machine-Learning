@@ -6,24 +6,40 @@ from fbprophet import Prophet
 from fbprophet.plot import plot_plotly
 from plotly import graph_objs as go
 
+st.markdown(
+	"""
+	<style>
+	.main {
+     	background-color: #F5F5F5;
+	}
+	</style>
+	""",
+	unsafe_allow_html=True
+)
+
 START = "2015-01-01"
 TODAY = date.today().strftime("%Y-%m-%d")
 
-st.title('Stock Forecast App')
+st.title('Stock Price Prediction - Group1')
 
-stocks = ('GOOG', 'AAPL', 'MSFT', 'GME')
+stocks = ('GOOG', 'AAPL', 'MSFT', 'GME','Others')
 selected_stock = st.selectbox('Select dataset for prediction', stocks)
+
+others = st.text_input('Please input stock code','')
+
+if selected_stock == 'Others':
+	selected_stock = others
+else:
+	return
 
 n_years = st.slider('Years of prediction:', 1, 4)
 period = n_years * 365
-
 
 @st.cache
 def load_data(ticker):
     data = yf.download(ticker, START, TODAY)
     data.reset_index(inplace=True)
     return data
-
     
 data_load_state = st.text('Loading data...')
 data = load_data(selected_stock)
