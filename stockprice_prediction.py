@@ -23,7 +23,7 @@ TODAY = date.today().strftime("%Y-%m-%d")
 st.title('Stock Price Prediction - Group1')
 
 stocks = ('GOOG', 'AAPL', 'MSFT', 'GME','Others')
-selected_stock = st.selectbox('Select dataset for prediction or input stock code below', stocks)
+selected_stock = st.selectbox('Select stock symbol for prediction or select Others', stocks)
 
 if selected_stock == 'Others':
 	selected_stock = st.text_input('Please input stock code','')
